@@ -73,7 +73,6 @@ class EventFixtures extends Fixture implements DependentFixtureInterface
         $event3->setPrice("0");
         $event3->setIsValid();
         $this->setReference("melee-numerique", $event3);
-
         $manager->persist($event3);
 
         $event4 = new Event();
