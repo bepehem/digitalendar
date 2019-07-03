@@ -8,10 +8,10 @@
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername" class="sr-only">Username</label>
+    <h1 class="h3 mb-3 font-weight-normal">Authentification</h1>
+    <label for="inputUsername" class="sr-only">Identifiant</label>
     <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
+    <label for="inputPassword" class="sr-only">Mot de passe</label>
     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
     <input type="hidden" name="_csrf_token"

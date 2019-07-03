@@ -1,4 +1,7 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="btn-group">
+    <button class="btn btn-group-lg btn-outline-primary">{{ button_label|default('Enregistrer') }}</button>
+    <a href="{{ path('event_index') }}" class="btn btn-outline-secondary">Retour</a>
+    </div>
 {{ form_end(form) }}

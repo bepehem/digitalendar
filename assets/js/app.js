@@ -16,3 +16,12 @@ require("select2");
 require("tinymce");
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+
+$(document).ready(function() {
+
+    $('select').select2();
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+});
+

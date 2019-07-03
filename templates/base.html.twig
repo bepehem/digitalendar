@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Bienvenue{% endblock %}</title>
     {% block stylesheets %} {{ encore_entry_link_tags('app') }} {% endblock %}
 </head>
 <body>
@@ -15,9 +15,15 @@
                 <strong>Digitalendar</strong>
             </a>
             <nav class="my-2 my-md-0">
-                <a class="p-2 text-white" href="{{ path('event_index') }}">Les événements</a>
-                <a class="p-2 text-white" href="{{ path('event_new') }}">Proposer un événement</a>
-                <a class="p-2 text-white" href="account.html">Mon compte</a>
+                    <a class="p-2 text-white" href="{{ path('event_index') }}">Les événements</a>
+                {% if app.user %}
+                    <a class="p-2 text-white" href="{{ path('event_new') }}">Proposer un événement</a>
+                {% endif %}
+                {% if app.user %}
+                    <a class="p-2 text-white" href="account.html">Mon compte</a>
+                {% else %}
+                    <a class="p-2 text-white" href="account.html">Créer un compte</a>
+                {% endif %}
                 {% if app.user %}
                     <a class="p-2 text-white" href="{{ path('app_logout') }}">Déconnexion</a>
                 {% else %}
@@ -29,11 +35,12 @@
 </header>
 
 <main role="main">
-
-    {% block body %}
-
-    {% endblock %}
-
+    <div id="events" class="album py-5 bg-light">
+        <div class="container">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
 </main>
 
 <footer class="text-muted">
@@ -41,16 +48,9 @@
         <p class="float-right">
             <a href="#">Haut de page</a>
         </p>
-        <p>&copy; Digitalendar 2019</p>
+        <p>&copy; Digitalendar - 2019</p>
     </div>
 </footer>
-
 {% block javascripts %}{{ encore_entry_script_tags('app') }} {% endblock %}
 </body>
 </html>
-
-
-
-
-
-
