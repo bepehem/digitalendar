@@ -15,17 +15,19 @@
         </div>
     </section>
 
-    <div id="events" class="album py-5 bg-light">
+    <div class="album py-5 bg-light">
         <div class="container">
 
             <h2>Les prochains événements</h2>
 
             <div class="row">
-
-                {{ render(controller('App\\Controller\\DefaultController::event')) }}
+                {% for event in events  %}
+                    <div class="col-md-4">
+                        {% include 'event/_thumbnail.html.twig' with {'event': event} only %}
+                    </div>
+                {% endfor %}
 
             </div>
         </div>
     </div>
-
 {% endblock %}
