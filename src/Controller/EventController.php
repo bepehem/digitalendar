@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Entity\Participant;
 use App\Form\EventType;
 use App\Repository\EventRepository;
 use App\Service\Slugger;
@@ -79,6 +80,33 @@ class EventController extends AbstractController
     }
 
     /**
+     * @Route("/{slug}/add-participant", name="event_add_participant", methods={"GET"})
+     */
+    public function addParticipant(Event $event): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // Vérifier si l'utilisateur participe déjà
+        $participant = $em->getRepository(Participant::class)->findOneBy(["user" => $this->getUser(), "event" => $event]);
+
+        if ($participant) {
+            $em->remove($participant); // Supprimer la participation
+        } else {
+            // Ajouter la participation
+            $participant = new Participant();
+            $participant->setUser($this->getUser());
+            $participant->setEvent($event);
+            $participant->setCreatedAt(new \DateTime());
+
+            $em->persist($participant);
+        }
+
+        $em->flush();
+
+        return $this->redirectToRoute("event_show", ["slug" => $event->getSlug()]);
+    }
+
+    /**
      * @Route("/{slug}/edit", name="event_edit", methods={"GET","POST"})
      * @IsGranted("ROLE_USER")
      */
@@ -109,7 +137,7 @@ class EventController extends AbstractController
      */
     public function delete(Request $request, Event $event): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $event->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $event->getSlug(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($event);
             $entityManager->flush();

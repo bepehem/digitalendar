@@ -1,0 +1,8 @@
+easy_admin:
+    entities:
+        - App\Entity\User
+        - App\Entity\City
+        - App\Entity\Event
+        - App\Entity\Participant
+        - App\Entity\Language
+

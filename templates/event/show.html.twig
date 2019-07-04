@@ -5,10 +5,9 @@
 {% block body %}
     <div class="album py-5 bg-light">
         <div class="container">
-
             <div class="row">
                 <div class="col-md-4">
-                    <img src="{{ asset('uploads/' ~ event.picture) }}" alt="events-picture" height="180px" width="300px">
+                    <img src="{{ asset('uploads/' ~ event.picture) }}" alt="{{ event.picture }}" class="fit-image">
                 </div>
                 <div class="col-md-8">
                     <h1>{{ event.title }}</h1>
@@ -29,13 +28,17 @@
                         site web
                     </a>
                     <span class="badge badge-pill badge-secondary" data-toggle="tooltip" data-placement="top" title="Prix">
-                        <i class="fa fa-euro"></i>
-                        {{ event.price }}
+                        {% if event.price == 0 %}
+                            Gratuit
+                        {% else %}
+                            <i class="fa fa-euro"></i>
+                            {{ event.price }}
+                        {% endif %}
                     </span>
 
                     <p>{{ event.description }}</p>
 
-                    <a href="#" class="btn btn-primary btn-lg">J'y vais !</a>
+                    <a href="{{ event.participants }}" class="btn btn-primary btn-lg">J'y vais !</a>
 
                 </div>
             </div>

@@ -7,6 +7,12 @@ html {
     scroll-behavior: smooth;
 }
 
+.fit-image{
+    height: 200px; /* only if you want fixed height */
+    object-fit: cover;
+    width: 100%;
+}
+
 .album img {
     height: 225px;
     object-fit: contain;
