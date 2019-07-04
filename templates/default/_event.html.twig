@@ -8,7 +8,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                     <a href="{{ path('event_show', {'slug': events.slug}) }}" class="btn btn-sm btn-outline-secondary">Voir</a>
-                    {% if app.user %}
+                    {% if app.user == events.user or is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('event_edit', {'slug': events.slug}) }}" class="btn btn-sm btn-outline-secondary">Modifier</a>
                     {% endif %}
                 </div>
