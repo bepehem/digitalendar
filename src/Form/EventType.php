@@ -16,7 +16,6 @@ class EventType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('slug')
             ->add('pictureFile', FileType::class, [
                 'mapped' => false,
                 'required' => false
@@ -27,8 +26,7 @@ class EventType extends AbstractType
             ->add('dateEnd', DateType::class)
             ->add('url')
             ->add('price')
-            ->add('language')
-            ->add('user');
+            ->add('language');
     }
 
     public function configureOptions(OptionsResolver $resolver)
