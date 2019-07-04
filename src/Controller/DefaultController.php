@@ -14,7 +14,7 @@ class DefaultController extends AbstractController
      */
     public function show() : Response
     {
-        $events =$this->getDoctrine()->getRepository(Event::class)->findAll();
+        $events =$this->getDoctrine()->getRepository(Event::class)->findAfterNow();
 
         return $this->render('default/homepage.html.twig', [
             'events'=>$events
