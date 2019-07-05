@@ -4,3 +4,7 @@
 app_logout:
   path: /logout
   methods: GET
+
+app_homepage:
+  path: /homepage
+  methods: GET

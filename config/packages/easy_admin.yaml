@@ -1,8 +1,15 @@
 easy_admin:
+    site_name: Digitalendar-admin
+    design:
+        assets:
+            css:
+                - 'bundles/easyadmin/bootstrap-all.css'
+            js:
+                - 'bundles/easyadmin/bootstrap-all.js'
     entities:
-        - App\Entity\User
-        - App\Entity\City
         - App\Entity\Event
+        - App\Entity\User
         - App\Entity\Participant
+        - App\Entity\City
         - App\Entity\Language
 

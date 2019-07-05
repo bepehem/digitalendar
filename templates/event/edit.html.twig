@@ -4,11 +4,9 @@
 
 {% block body %}
     <h1>Modifier : {{ event.title }}</h1>
-
+    <div class="btn-group-justified">
     {{ include('event/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
     {{ include('event/_delete_form.html.twig') }}
-
-    <a href="{{ path('event_index') }}" class="btn btn-outline-secondary" >Retour</a>
-
+    </div>
 {% endblock %}
