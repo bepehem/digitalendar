@@ -37,9 +37,13 @@
                     </span>
 
                     <p>{{ event.description }}</p>
-
-                    <a href="{{ path('event_add_participant', {'slug': event.slug}) }}" class="btn btn-primary btn-lg">J'y vais !</a>
-
+                    {% if app.user and participant != null %}
+                        <a href="{{ path('event_add_participant', {'slug': event.slug}) }}" class="btn btn-primary btn-lg">Je n'y vais plus !</a>
+                    {% elseif app.user %}
+                        <a href="{{ path('event_add_participant', {'slug': event.slug}) }}" class="btn btn-warning btn-lg">J'y vais !</a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}" class="btn btn-warning btn-lg">Je m'inscris</a>
+                    {% endif %}
                 </div>
             </div>
 

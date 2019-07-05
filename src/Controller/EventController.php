@@ -73,9 +73,16 @@ class EventController extends AbstractController
      */
     public function show(Event $event): Response
     {
+        $em = $this->getDoctrine()->getManager();
+
+        // Vérifier si l'utilisateur participe déjà
+        $participant = $em->getRepository(Participant::class)->findOneBy(["user" => $this->getUser(), "event" => $event]);
+
+
         return $this->render('event/show.html.twig', [
             'event' => $event,
             'slug' => $event->getSlug(),
+            'participant'=> $participant
         ]);
     }
 
